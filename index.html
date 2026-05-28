@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Music Generator - Create Music with AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">🎵 AI Music</div>
+            <nav class="nav">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button class="dark-mode-btn" onclick="toggleDarkMode()">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">AI Music Generator</h1>
+            <p class="hero-desc">Create beautiful music using Artificial Intelligence - It's easy and fun!</p>
+            <button class="btn btn-primary" onclick="scrollToSection('generate')">
+                🎵 Generate Music Now
+            </button>
+        </div>
+        <div class="animated-bg"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">What You Can Do</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎹</div>
+                    <h3>Easy Music Creation</h3>
+                    <p>Create amazing music in just a few clicks! No music experience needed.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Generated Songs</h3>
+                    <p>Our smart AI creates unique songs just for you!</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>MIDI Support</h3>
+                    <p>Upload your MIDI files and let AI enhance them!</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Download Music</h3>
+                    <p>Download your created music in different formats!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Animation Section -->
+    <section class="music-animation">
+        <div class="container">
+            <h2 class="section-title">Music in Motion</h2>
+            
+            <!-- Animated Bars -->
+            <div class="bars-container">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <!-- Floating Music Notes -->
+            <div class="floating-notes">
+                <div class="note">🎵</div>
+                <div class="note">🎶</div>
+                <div class="note">🎼</div>
+                <div class="note">🎹</div>
+                <div class="note">🎸</div>
+            </div>
+
+            <!-- Sound Wave Animation -->
+            <div class="sound-wave">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generate Section -->
+    <section id="generate" class="generate">
+        <div class="container">
+            <h2 class="section-title">Create Your Music</h2>
+
+            <!-- Upload Box -->
+            <div class="upload-box" id="uploadBox" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                <div class="upload-content">
+                    <div class="upload-icon">📁</div>
+                    <p class="upload-text">Drag and Drop MIDI File Here</p>
+                    <p class="upload-small">or click to browse</p>
+                    <input type="file" id="fileInput" accept=".mid,.midi" style="display: none;" onchange="handleFileSelect(event)">
+                    <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">
+                        Browse Files
+                    </button>
+                </div>
+            </div>
+
+            <!-- Music Options -->
+            <div class="options-section">
+                <h3>Choose Your Style</h3>
+                <div class="style-buttons">
+                    <button class="style-btn active" data-style="classical">Classical</button>
+                    <button class="style-btn" data-style="jazz">Jazz</button>
+                    <button class="style-btn" data-style="pop">Pop</button>
+                    <button class="style-btn" data-style="electronic">Electronic</button>
+                </div>
+            </div>
+
+            <!-- Generate Button -->
+            <button class="btn btn-large" onclick="generateMusic()" id="generateBtn">
+                ✨ Generate Music ✨
+            </button>
+
+            <!-- Loading Animation -->
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Creating your music...</p>
+            </div>
+
+            <!-- Result Section -->
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-card">
+                    <h3>🎉 Your Music is Ready!</h3>
+                    <p id="resultText"></p>
+                    <div class="result-buttons">
+                        <button class="btn btn-success" onclick="playMusic()">▶️ Play Music</button>
+                        <button class="btn btn-success" onclick="downloadMusic()">⬇️ Download</button>
+                        <button class="btn btn-secondary" onclick="resetForm()">Create Another</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About This Project</h2>
+            <div class="about-content">
+                <p>AI Music Generator is a fun and easy tool to create music using Artificial Intelligence. No music knowledge required! Just upload a file or choose a style, and let AI create amazing music for you.</p>
+                <p>This project is perfect for students, beginners, and anyone who loves music and wants to explore AI technology.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-info">
+                <a href="https://github.com" class="social-link" target="_blank">
+                    <span class="social-icon">🐙</span> GitHub
+                </a>
+                <a href="https://linkedin.com" class="social-link" target="_blank">
+                    <span class="social-icon">💼</span> LinkedIn
+                </a>
+                <a href="mailto:contact@aimusic.com" class="social-link">
+                    <span class="social-icon">✉️</span> Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AI Music Generator. Made with ❤️ for Music Lovers!</p>
+            <p>Perfect for Students | Beginners | Music Enthusiasts</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
